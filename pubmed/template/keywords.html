@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details for keywords</title>
+</head>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="static/js/cancer_trend.js"></script>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="index">Pubmed analysis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="ICD">ICD search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="authors">Authors Network</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cancer">Cancer analysis</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="https://github.com/JeffBCC96/Big_data_EECS6893-1227-.git">Git hub</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+<body style="padding:70px">
+<h4> Frequency of keywords in cancer literature from 2008 - 2019 </h4>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_1" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_2" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_3" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_4" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_5" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_6" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_7" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_8" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_9" width="100" height="100"></canvas>
+        </div>
+        <div class="col-md-4", style='border: 1px solid lightgray;'>
+          <canvas id="pie-chart_10" width="100" height="100"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    var all_data = {{ key_pie | safe }};
+    var x = 1;
+    for (var i = 2009; i<2019; i++){
+        var year = i.toString();
+        info = all_data[i.toString()];
+        id = 'pie-chart_' + x;
+        pie_chart(id, info, year);
+        x ++;
+
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

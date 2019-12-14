@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cancer</title>
+</head>
+
+
+
+<body style="padding-top:50px; background-color: #F6F6F6; text-decoration-color:  #555">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-cartesian-3d.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="static/js/cancer_trend.js"></script>
+
+
+<script src ='https://cdn.anychart.com/releases/8.7.0/js/anychart-base.min.js'></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="index">Pubmed analysis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="ICD">ICD search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="authors">Authors Network</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cancer">Cancer analysis</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="https://github.com/JeffBCC96/Big_data_EECS6893-1227-.git">Git hub</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<main>
+     <div class="container">
+         <h1 >Analysis of literature of cancer</h1>
+         <p style="color: black">We analyzed the trend for keywords and journals of cancer literature from 2009 to 2018 in order to predict the
+             direction of future development in the field of cancer. Meanwhile, LDA (Latent Dirichlet allocation) model was applied to analyze the
+             topics in the articles. </p>
+         <h4>1. Number of Cancer articles published </h4>
+         <canvas id="myChart" width="200" height="100"></canvas>
+         <br>
+         <br>
+         <h4>2. Keywords for cancer literature <a class="btn btn-outline-info btn-sm" href="keywords" role="button"> More>></a> </h4>
+         <canvas id="line-chart_1" width="200" height="130"></canvas>
+         <br>
+         <br>
+         <h4>3. Journals for cancer literature </h4>
+         <canvas id="line-chart_2" width="200" height="150"></canvas>
+         <br>
+         <br>
+         <h4>4. Topics in the field of cancer among the 10 years <a class="btn btn-outline-info btn-sm" href="journals" role="button"> More>></a> </h4>
+
+         <div id="lda_model" style="width:100%; height:550px"></div>
+
+
+    </div>
+
+
+
+<script>
+        var keyword_info = {{ word | safe }}
+        var journal_info = {{ journal | safe }}
+        var lda = {{ lda | safe }}
+
+        line_1("line-chart_1",keyword_info)
+        line_1("line-chart_2",journal_info)
+        word_cloud(lda)
+
+
+</script>
+
+
+<script>
+    var literature = {{ literature | safe }}
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: literature,
+        options: {
+            title:{
+                text: 'Published Articles during the 10 years',
+                display: true
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+
+
+
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>network</title>
+</head>
+<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style type="text/css">
+    #mynetwork {
+      width: 1200px;
+      height: 600px;
+      border: 1px solid lightgray;
+    }
+  </style>
+<script>
+    function search(n,e){
+        var nodes = new vis.DataSet(n)
+        var edges = new vis.DataSet(e)
+        var container = document.getElementById('mynetwork');
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var options = {
+            interaction:{
+                hover: true
+            }
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('hoverEdge', function(x){
+            network.clustering.updateEdge(x.edge,{color: 'red', font: {size: 14}})
+            console.log(x.edge)
+        });
+        network.on('blurEdge', function(x){
+            network.clustering.updateEdge(x.edge,{font: {size: 0}})
+            console.log(x.edge)
+        });
+    }
+</script>
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="index">Pubmed analysis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="ICD">ICD search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="authors">Authors Network</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cancer">Cancer analysis</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="https://github.com/JeffBCC96/Big_data_EECS6893-1227-.git">Git hub</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<main>
+    <div style="padding:60px">
+        <h1 style="line-height: 50px;"> Network for Authors </h1>
+        <p> This is the place to search the relationship between authors</p>
+
+        <form action="/author_search" method="post" id = 'form2'>
+                {% csrf_token %}
+                <input type="text" name="network" id ='authors' placeholder="Lori Pierce-Department of Radiation Oncology, University of Michigan, Ann Arbor, Michigan.">
+                <input type="submit" value="Submit" id="btn">
+
+        </form>
+
+    </div>
+    <div class='container' id="mynetwork"> </div>
+    <script>
+        search({{ nodes|safe }}, {{ edges|safe }})
+
+    </script>
+
+</main>
+
+</body>
+</html>

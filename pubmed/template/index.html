@@ -1,0 +1,76 @@
+---
+Author: Rong Ma
+title: Pubmed analysis
+
+---
+
+<!-- bootstrap sources -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="index">Pubmed analysis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="ICD">ICD search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="authors">Authors Network</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cancer">Cancer analysis</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="https://github.com/JeffBCC96/Big_data_EECS6893-1227-.git">Git hub</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<main role="main">
+  <div class="jumbotron" style="background-image: url('static/imgs/abstract-architecture-background-brick-194096.jpg');  background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <div class="container" >
+      <h1 class="display-3" style="color: white">Pubmed Analysis</h1>
+      <p style="color: white"> The website can help you search Pubmed articles by ICD terms, find the most intimate co-authors for an author,
+          analyze the trend of cancer research among the recent 10 years.</p>
+      <p><a class="btn btn-primary btn-lg" href="ICD" role="button">ICD search >></a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Authors' network</h2>
+        <p>You only need to provide some information of the author and then the network for the author will be created automatically.
+            According to the network, the status or importance of the author will be known easily.</p>
+        <p><a class="btn btn-secondary" href="authors" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-6">
+        <h2>Cancer Analysis</h2>
+        <p> From 2009 to 2018, the rapid development of cancer research extended the depth or even expanded the dimension of research in that filed.
+            The nature or complexity of the filed, however, impedes the laymen or students in life science to have a thorough understanding about cancer research.
+            The analysis of the Pubmed articles, we did, could clearly present the changes of topics of interest or hot-spots in cancer research which can assist novice
+            to interpret the area in a different but much efficient way.
+        </p>
+        <p><a class="btn btn-secondary" href="cancer" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+
+    <hr>
+  </div>
+
+</main>
